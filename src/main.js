@@ -31,7 +31,7 @@ class Main extends Component{
 class Header extends Component{
     constructor(props) {super(props);}
     render() {
-        return (<div className='main-header' onClick={() => window.print()}>头部</div>);
+        return (<div className='main-header'>头部</div>);
     }
 }
 
@@ -41,8 +41,10 @@ class Menus extends Component{
         let props = this.props;
         return (
             <div className='main-menus'>
-                <div onClick={() => props.toggleView('index',{id:'111',name:'index'})}>index</div>
-                <div onClick={() => props.toggleView('text',{id:'222',name:'text'})}>text</div>
+                <div className='main-sidebar'>
+                    <div onClick={() => props.toggleView('index',{id:'111',name:'index'})}>index</div>
+                    <div onClick={() => props.toggleView('text',{id:'222',name:'text'})}>text</div>
+                </div>
             </div>
         );
     }
