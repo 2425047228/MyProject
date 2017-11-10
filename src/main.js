@@ -1,53 +1,58 @@
-/**
- * 主界面组件
- * @author yangyunlong
- */
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './main.css';
-import routes from './routes';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
+const SubMenu = Menu.SubMenu;
 
 class Main extends Component{
     constructor(props) {
         super(props);
-        this.state = {view:'text',params:null};
-        this.toggleView = this.toggleView.bind(this);
+        this.state = {collapsed: false};
+        this.toggle = this.toggle.bind(this);    //侧边栏样式切换
     }
 
-    toggleView(view,params) {this.setState({view:view,params:params});}
+      toggle() {this.setState({collapsed: !this.state.collapsed});}
 
-    render() {
-        let state = this.state;
-        const View = routes[state.view];
+      render() {
         return (
-            <div className='main-container'>
-                <Header/>
-                <Menus toggleView={this.toggleView}/>
-                <View params={state.params} toggleView={this.toggleView}/>
-            </div>
+          <Layout style={{ minHeight: '100vh' }}>
+            <Sider
+              trigger={null}
+              collapsible
+              collapsed={this.state.collapsed}
+            >
+              <div className="logo" />
+              <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                <Menu.Item key="1">
+                  <Icon type="user" />
+                  <span>nav 1</span>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Icon type="video-camera" />
+                  <span>nav 2</span>
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Icon type="upload" />
+                  <span>nav 3</span>
+                </Menu.Item>
+              </Menu>
+            </Sider>
+            <Layout>
+              <Header style={{ background: '#fff', padding: 0 }}>
+                <Icon
+                  className="trigger"
+                  type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                  onClick={this.toggle}
+                />
+              </Header>
+              <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+                Content
+              </Content>
+            </Layout>
+          </Layout>
         );
-    }
-}
-class Header extends Component{
-    constructor(props) {super(props);}
-    render() {
-        return (<div className='main-header'>头部</div>);
-    }
-}
-
-class Menus extends Component{
-    constructor(props) {super(props);}
-    render() {
-        let props = this.props;
-        return (
-            <div className='main-menus'>
-                <div className='main-sidebar'>
-                    <div onClick={() => props.toggleView('index',{id:'111',name:'index'})}>index</div>
-                    <div onClick={() => props.toggleView('text',{id:'222',name:'text'})}>text</div>
-                </div>
-            </div>
-        );
-    }
+      }
 }
 
 ReactDOM.render(<Main/>,document.getElementById('root'));
