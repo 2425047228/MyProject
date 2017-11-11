@@ -1,19 +1,29 @@
-
-#components-layout-demo-custom-trigger .trigger {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 16px;
-    cursor: pointer;
-    transition: color .3s;
-  }
-  
-  #components-layout-demo-custom-trigger .trigger:hover {
-    color: #108ee9;
-  }
-  
-  #components-layout-demo-custom-trigger .logo {
-    height: 32px;
-    background: #333;
-    border-radius: 6px;
-    margin: 16px;
-  }
+.main-header{
+    position: fixed;
+    top: 0;left: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 1;
+    padding: 0 0 0 200px;
+}
+.main-sider{
+    position: fixed;
+    top: 0;left: 0;
+    z-index: 10;
+    height: 100%;
+    background: #fff;
+}
+.main-content{
+    width: 100%;height: 100%;
+    box-sizing: border-box;-webkit-box-sizing: border-box;
+    padding: 64px 0 0 200px;
+}
+.main-trigger {font-size: 18px;line-height: 64px;padding: 0 16px;cursor: pointer;transition: color .3s;}
+.main-trigger:hover {color: #108ee9;}
+.main-logo{
+    height: 64px;width: 100%;line-height: 64px;font-size: 28px;
+    text-align: center;
+    background: #108ee9;color: #fff;overflow: hidden;
+}
+.main-shrink{padding-left: 64px;}
+.main-hide{display: none}
