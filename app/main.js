@@ -8,12 +8,25 @@ const electron = require('electron'),
 let win = {},    //声明窗口对象
     winprints = null;
 
+const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
+    //Someone tried to run a second instance, we should focus our window.
+    if (win.main) {
+        if (win.main.isMinimized()) win.main.restore()
+        win.main.focus()
+    } else if (win.login) {
+        if (win.login.isMinimized()) win.login.restore()
+        win.login.focus()
+    }
+})
+      
+if (shouldQuit) {app.quit()}
+
 // 部分 API 在 ready 事件触发后才能使用。
 app.on('ready', () => {
-    //无下拉栏height:630
-    //createWindow('login', { width: 500, height: 780, frame: false, resizable: false,autoHideMenuBar:true }, 'public/login.html');
+    //无下拉栏height:630    有下拉栏780
+    createWindow('login', { width: 400, height: 530, frame: false, resizable: false,autoHideMenuBar:true, transparent:true }, 'public/login.html');
     //开发测试优先创建main窗口
-    let electronScreen = electron.screen,    //定义屏幕对象变量
+    /*let electronScreen = electron.screen,    //定义屏幕对象变量
         size = electronScreen.getPrimaryDisplay().workAreaSize;    //获取屏幕大小
     createWindow(
         'main', 
@@ -25,7 +38,7 @@ app.on('ready', () => {
             autoHideMenuBar:true
         },
         'public/main.html'
-    );
+    );*/
 });
 
 app.on('window-all-closed', () => { app.quit() }); //当全部窗口关闭时退出。
@@ -38,7 +51,7 @@ app.on('window-all-closed', () => { app.quit() }); //当全部窗口关闭时退
     }
 })*/
 
-ipcMain.on('login-msg', (e, args) => {    //登录界面ipc监听
+ipcMain.on('login', (e, args) => {    //登录界面ipc监听
     if ('close' === args) win.login.close();    //用户关闭界面
     if ('SUCCESS' === args) {    //登录成功打开主页面并销毁登录界面
         let electronScreen = electron.screen,    //定义屏幕对象变量
