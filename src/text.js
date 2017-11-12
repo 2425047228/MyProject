@@ -7,6 +7,6 @@ export default class Text extends Component{
     }
     
     render() {
-        return (<div style={{width:'100%',height:'100%'}}>text</div>);
+        return (<div className='main-content'>text</div>);
     }
 }

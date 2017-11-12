@@ -1,11 +1,15 @@
+#root .main-spread{padding-left: 64px;}
+#root .main-container-spread{padding-left: 80px;}
 .main-header{
     position: fixed;
     top: 0;left: 0;
     background: #fff;
     width: 100%;
     z-index: 1;
-    padding: 0 0 0 200px;
+    padding: 0 16px 0 200px;
 }
+.main-trigger {font-size: 18px;line-height: 64px;padding: 0 16px;cursor: pointer;transition: color .3s;}
+.main-trigger:hover {color: #108ee9;}
 .main-sider{
     position: fixed;
     top: 0;left: 0;
@@ -13,17 +17,15 @@
     height: 100%;
     background: #fff;
 }
-.main-content{
+.main-container{
     width: 100%;height: 100%;
     box-sizing: border-box;-webkit-box-sizing: border-box;
-    padding: 64px 0 0 200px;
+    padding: 80px 16px 24px 216px;
 }
-.main-trigger {font-size: 18px;line-height: 64px;padding: 0 16px;cursor: pointer;transition: color .3s;}
-.main-trigger:hover {color: #108ee9;}
+.main-content{display: block;width: 100%;height: 100%;background: #fff;overflow: auto;}
 .main-logo{
     height: 64px;width: 100%;line-height: 64px;font-size: 28px;
     text-align: center;
     background: #108ee9;color: #fff;overflow: hidden;
 }
-.main-shrink{padding-left: 64px;}
 .main-hide{display: none}

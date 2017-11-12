@@ -10,7 +10,8 @@ let win = {},    //声明窗口对象
 
 // 部分 API 在 ready 事件触发后才能使用。
 app.on('ready', () => {
-    //createWindow('login', { width: 491, height: 351, frame: false, resizable: false,autoHideMenuBar:true }, 'public/login.html');
+    //无下拉栏height:630
+    //createWindow('login', { width: 500, height: 780, frame: false, resizable: false,autoHideMenuBar:true }, 'public/login.html');
     //开发测试优先创建main窗口
     let electronScreen = electron.screen,    //定义屏幕对象变量
         size = electronScreen.getPrimaryDisplay().workAreaSize;    //获取屏幕大小
