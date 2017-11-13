@@ -6,12 +6,17 @@ const {ipcRenderer} = window.require('electron');
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './login.css'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-const FormItem = Form.Item;
+import { Icon, Input, Button, Checkbox, message } from 'antd';
 
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {account:'', password:''};
+        this.login = this.login.bind(this);
+    }
+
+    login() {
+        message.error('用户名或密码错误！');
     }
 
     render() {
@@ -22,13 +27,32 @@ class Login extends Component {
                     <div className='login-avatar'><Icon type="pie-chart" style={{fontSize:'200px'}}/></div>
                     <div className='login-welcome'>欢迎登录后台系统</div>
                     <div className='login-input-row'>
-                        <Input size="large" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                        <Input
+                            size="large"
+                            prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                            placeholder="用户名"
+                            value={this.state.account}
+                            onChange={(e) => this.setState({account:e.target.value})}
+                        />
                     </div>
                     <div className='login-input-row'>
-                        <Input size="large" prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+                        <Input
+                            size="large"
+                            prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
+                            type="password"
+                            placeholder="密码"
+                            value={this.state.password}
+                            onChange={(e) => this.setState({password:e.target.value})}
+                        />
                     </div>
                     <div className='login-input-row'>
-                        <Button type="primary" htmlType="button">登录</Button>
+                        <Button
+                            type="primary"
+                            size='large'
+                            htmlType="button"
+                            className='login-button'
+                            onClick={this.login}
+                        >登录</Button>
                     </div>
                 </div>
             </div>
