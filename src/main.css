@@ -1,4 +1,8 @@
+/* 界面占满全屏 */
 html,body,#root{width: 100%;height: 100%;}
+/* 滚动条样式 */
+::-webkit-scrollbar{width: 8px;height: 1px;position: fixed;top: 0;right: 0;}
+::-webkit-scrollbar-thumb{border-radius: 12px;background: #afb1b3;}
 #root .main-spread{padding-left: 64px;}
 #root .main-container-spread{padding-left: 80px;}
 .main-header{
@@ -7,26 +11,26 @@ html,body,#root{width: 100%;height: 100%;}
     background: #fff;
     width: 100%;
     z-index: 1;
-    padding: 0 16px 0 200px;
+    padding: 0 16px 0 256px;
 }
-.main-trigger {font-size: 18px;line-height: 64px;padding: 0 16px;cursor: pointer;transition: color .3s;}
+.main-trigger {font-size: 20px;line-height: 64px;padding: 0 16px;cursor: pointer;transition: color .3s;font-weight: bold;}
 .main-trigger:hover {color: #108ee9;}
 .main-sider{
     position: fixed;
     top: 0;left: 0;
     z-index: 10;
     height: 100%;
-    background: #fff;
+    font-size: 16px;
 }
 .main-container{
     width: 100%;height: 100%;
     box-sizing: border-box;-webkit-box-sizing: border-box;
-    padding: 80px 16px 24px 216px;
+    padding: 80px 16px 24px 272px;
 }
 .main-content{display: block;width: 100%;height: 100%;background: #fff;overflow: auto;}
 .main-logo{
     height: 64px;width: 100%;line-height: 64px;font-size: 28px;
     text-align: center;
-    background: #108ee9;color: #fff;overflow: hidden;
+    background: #404040;color: #108ee9;overflow: hidden;
 }
 .main-hide{display: none}

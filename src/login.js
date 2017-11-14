@@ -11,7 +11,7 @@ import { Icon, Input, Button, Checkbox, message } from 'antd';
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {account:'', password:''};
+        this.state = {account:'', password:'', loading:false};
         this.login = this.login.bind(this);
     }
 
@@ -20,6 +20,7 @@ class Login extends Component {
     }
 
     render() {
+        let state = this.state;
         return (
             <div className='login-container'>
                 <div className='login-close' onClick={() => ipcRenderer.send('login','close')}><Icon type="close-circle"/></div>
@@ -31,7 +32,8 @@ class Login extends Component {
                             size="large"
                             prefix={<Icon type="user" style={{ fontSize: 13 }} />}
                             placeholder="用户名"
-                            value={this.state.account}
+                            disabled={state.loading}
+                            value={state.account}
                             onChange={(e) => this.setState({account:e.target.value})}
                         />
                     </div>
@@ -41,7 +43,8 @@ class Login extends Component {
                             prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
                             type="password"
                             placeholder="密码"
-                            value={this.state.password}
+                            disabled={state.loading}
+                            value={state.password}
                             onChange={(e) => this.setState({password:e.target.value})}
                         />
                     </div>
@@ -50,6 +53,7 @@ class Login extends Component {
                             type="primary"
                             size='large'
                             htmlType="button"
+                            loading={state.loading}
                             className='login-button'
                             onClick={this.login}
                         >登录</Button>

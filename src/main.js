@@ -29,9 +29,16 @@ class Main extends Component {
                 <Header className={'main-header' + (collapsed ? ' main-spread' : '')}>
                     <Icon className='main-trigger' type={collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle}/>
                 </Header>
-                <Sider className='main-sider' trigger={null} collapsible collapsed={collapsed}>
-                    <div className='main-logo'><Icon type='windows'/></div>
-                    <Menu mode='inline' defaultSelectedKeys={['index']} onClick={this.toggleView}>
+                <Sider
+                    className='main-sider' 
+                    breakpoint="lg"
+                    trigger={null} 
+                    collapsible 
+                    width='256'
+                    collapsed={collapsed} 
+                    onCollapse={(collapsed) => this.setState({collapsed:collapsed})}>
+                    <div className='main-logo'><Icon type='pie-chart'/></div>
+                    <Menu mode='inline' theme='dark' style={{fontSize:'16px'}} defaultSelectedKeys={['index']} onClick={this.toggleView}>
                         <Menu.Item key='index'>
                             <Icon type='home'/><span>首页</span>
                         </Menu.Item>
