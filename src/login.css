@@ -20,9 +20,6 @@ html,body,#root{width: 100%;height: 100%;background: transparent;}
 .login-welcome{
     font-size: 24px;color: #108ee9;line-height: 48px;text-align: center;
 }
-.login-input-row{
-    width: 100%;margin-bottom: 24px;
-}
-.login-button{
-    width: 100%;
-}
+.login-input-row{width: 100%;margin-bottom: 24px;display: block;}
+.login-word-row{width: 100%;height: 32px;line-height: 32px;display: block;}
+.login-button{width: 100%;}

@@ -7,15 +7,33 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './login.css'
 import { Icon, Input, Button, Checkbox, message } from 'antd';
-
+let account = localStorage.getItem('account');
+let password = localStorage.getItem('password');
+let remember = localStorage.getItem('remember');
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {account:'', password:'', loading:false};
+        this.state = {
+            account:(null === account) ? '' : account,
+            password:(null === password) ? '' : password,
+            remember:('1' === remember) ? true : false,
+            loading:false
+        };
         this.login = this.login.bind(this);
+        console.log(account, password, remember);
     }
 
     login() {
+        let state = this.state;
+        if (state.remember) {
+            localStorage.setItem('account', state.account);
+            localStorage.setItem('password', state.password);
+            localStorage.setItem('remember', '1');
+        } else {
+            localStorage.setItem('account', '');
+            localStorage.setItem('password', '');
+            localStorage.setItem('remember', '0');
+        }
         message.error('用户名或密码错误！');
     }
 
@@ -47,6 +65,9 @@ class Login extends Component {
                             value={state.password}
                             onChange={(e) => this.setState({password:e.target.value})}
                         />
+                    </div>
+                    <div className='login-word-row'>
+                        <Checkbox checked={state.remember} onChange={() => this.setState({remember:!state.remember})}>记住我</Checkbox>
                     </div>
                     <div className='login-input-row'>
                         <Button
